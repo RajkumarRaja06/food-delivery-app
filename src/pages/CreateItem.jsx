@@ -1,5 +1,5 @@
 const CreateItem = () => {
-  return <div>CreateItem</div>;
+  return <div>Create Item</div>;
 };
 
 export default CreateItem;

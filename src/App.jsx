@@ -1,16 +1,14 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Root from './pages/Root';
-import CartContainer from './pages/CartContainer';
-import CreateItem from './pages/CreateItem';
+import { CartContainer, CreateItem, HeaderContainer, Home } from './pages';
 
 const App = () => {
   return (
     <BrowserRouter>
+      <HeaderContainer />
       <Routes>
-        <Route path='/' element={<Root />}>
-          <Route path='/createItem' element={<CreateItem />} />
-          <Route path='/cartContainer' element={<CartContainer />} />
-        </Route>
+        <Route path='/' element={<Home />}></Route>
+        <Route path='/createItem' element={<CreateItem />} />
+        <Route path='/cartContainer' element={<CartContainer />} />
       </Routes>
     </BrowserRouter>
   );
