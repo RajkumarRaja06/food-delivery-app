@@ -7,7 +7,7 @@ import { FiLogOut } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
-import { UserConsumer } from '../constants/userContext';
+import { UserConsumer } from '../context/userContext';
 
 const ComputerHeader = () => {
   const { login, userLoginData, isMenu, setIsMenu, logout } = UserConsumer();
