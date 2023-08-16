@@ -1,0 +1,168 @@
+.rowContainer {
+  width: 100%;
+}
+
+.rowContainer-title {
+  margin: 1rem auto;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rowContainer-titleName {
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding: 0.25rem;
+  border-bottom: 5px solid #dc2626;
+}
+
+.rowContainer-sliderBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.rowContainer-left-sliderBtn,
+.rowContainer-right-sliderBtn {
+  display: none;
+  position: relative;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.45rem;
+  background-color: #dc2626;
+  color: #fff;
+  text-align: center;
+  font-size: 1.75rem;
+  filter: brightness(200%);
+  cursor: pointer;
+}
+
+.rowContainer-left-sliderBtn span,
+.rowContainer-right-sliderBtn span {
+  position: absolute;
+  top: 0.35rem;
+  left: 0.35rem;
+}
+
+.rowContainer-left-sliderBtn:hover,
+.rowContainer-right-sliderBtn:hover {
+  filter: brightness(100%);
+}
+
+.rowContainer-sliderContainer {
+  width: 100%;
+  margin: 0rem auto;
+}
+
+.rowContainer-slider {
+  width: 100%;
+}
+
+.rowContainer-container {
+  position: relative;
+  width: 17rem;
+  height: 11rem;
+  background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 1) 32%,
+      rgba(255, 255, 255, 0) 100%
+    )
+    100% 100%;
+  border-radius: 1rem;
+  margin: 4rem auto;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.rowContainer-container:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(226 232 240 / var(--tw-bg-opacity));
+}
+
+.rowContainer-imgContainer {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rowContainer-img {
+  position: absolute;
+  top: -2.8rem;
+  left: 1rem;
+  width: 9rem;
+  height: auto;
+}
+.rowContainer-img img {
+  width: 100%;
+  left: 10%;
+  background-color: transparent;
+}
+
+.rowContainer-img:hover {
+  transform: scale(1.2);
+}
+
+.rowContainer-addToCart {
+  position: absolute;
+  right: 1rem;
+  top: 1.75rem;
+  padding: 0.35rem 0.45rem 0.25rem 0.45rem;
+  background-color: #dc2626;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.rowContainer-addToCart:hover {
+  filter: brightness(200%);
+}
+
+.rowContainer-slider-footer {
+  position: absolute;
+  bottom: 0.85rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  text-align: right;
+}
+
+.rowContainer-slider-foodName {
+  font-weight: 800;
+}
+
+.rowContainer-slider-calories {
+  color: #6b7280;
+}
+
+.rowContainer-price {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.rowContainer-priceIcon {
+  text-align: right;
+  font-size: 0.75rem;
+  color: #dc2626;
+}
+
+.rowContainer-priceName {
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+@media screen and (min-width: 768px) {
+  .rowContainer-left-sliderBtn,
+  .rowContainer-right-sliderBtn {
+    display: block;
+  }
+  .rowContainer-sliderContainer {
+    width: 90%;
+  }
+}

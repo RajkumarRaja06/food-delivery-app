@@ -4,11 +4,14 @@ import App from './App.jsx';
 import './styles/index.css';
 
 import { UserProvider } from './context/userContext.jsx';
+import { CreateItemProvider } from './context/createItemContext.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <UserProvider>
-      <App />
-    </UserProvider>
+    <CreateItemProvider>
+      <UserProvider>
+        <App />
+      </UserProvider>
+    </CreateItemProvider>
   </React.StrictMode>
 );

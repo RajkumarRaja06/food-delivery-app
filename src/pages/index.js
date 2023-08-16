@@ -1,6 +1,6 @@
 import CartContainer from './CartContainer';
 import CreateItem from './CreateItem';
-import HeaderContainer from './HeaderContainer';
-import Home from './Home';
+import RootLayout from './RootLayout';
+import HomeContainer from './HomeContainer';
 
-export { CartContainer, CreateItem, HeaderContainer, Home };
+export { CartContainer, CreateItem, RootLayout, HomeContainer };

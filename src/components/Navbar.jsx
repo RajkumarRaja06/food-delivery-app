@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MobileHeader, ComputerHeader } from '../components';
+import { MobileHeader, ComputerHeader } from '.';
 
 const HeaderContainer = () => {
   const [width, setWidth] = React.useState(window.innerWidth);
