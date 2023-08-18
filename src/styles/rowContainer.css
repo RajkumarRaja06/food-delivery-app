@@ -11,10 +11,20 @@
 }
 
 .rowContainer-titleName {
+  position: relative;
   font-size: 1.5rem;
   font-weight: 700;
   padding: 0.25rem;
-  border-bottom: 5px solid #dc2626;
+}
+
+.rowContainer-titleName::before {
+  position: absolute;
+  content: '';
+  bottom: 0;
+  width: 10rem;
+  color: #dc2626;
+  border-bottom: 5px solid;
+  border-radius: 0.25rem;
 }
 
 .rowContainer-sliderBtn {

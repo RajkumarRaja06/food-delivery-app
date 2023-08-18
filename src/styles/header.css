@@ -255,3 +255,9 @@
   border-bottom-left-radius: 0.75rem;
   transition: 0.5s ease-in-out;
 }
+
+@media screen and (max-width: 1024px) {
+  .computerHeader {
+    padding: 0 3rem;
+  }
+}

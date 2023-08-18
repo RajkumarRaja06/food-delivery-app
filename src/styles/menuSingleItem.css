@@ -1,0 +1,105 @@
+.menuSingleItem-container {
+  margin: 3rem auto;
+  max-width: 80rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.menuSingleItem {
+  position: relative;
+  width: 17rem;
+  height: 11rem;
+  background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 1) 32%,
+      rgba(255, 255, 255, 0) 100%
+    )
+    100% 100%;
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.menuSingleItem-container:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(226 232 240 / var(--tw-bg-opacity));
+}
+
+.menuSingleItem-imgContainer {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menuSingleItem-img {
+  position: absolute;
+  top: -2rem;
+  left: 1rem;
+  width: 9rem;
+  height: auto;
+}
+.menuSingleItem-img img {
+  width: 85%;
+  left: 10%;
+  background-color: transparent;
+}
+
+.menuSingleItem-img:hover {
+  transform: scale(1.2);
+}
+
+.menuSingleItem-addToCart {
+  position: absolute;
+  right: 1rem;
+  top: 1.75rem;
+  padding: 0.35rem 0.45rem 0.25rem 0.45rem;
+  background-color: #dc2626;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.menuSingleItem-addToCart:hover {
+  filter: brightness(200%);
+}
+
+.menuSingleItem-footer {
+  position: absolute;
+  bottom: 0.85rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  text-align: right;
+}
+
+.menuSingleItem-foodName {
+  font-weight: 800;
+}
+
+.menuSingleItem-calories {
+  color: #6b7280;
+}
+
+.menuSingleItem-price {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.menuSingleItem-priceIcon {
+  text-align: right;
+  font-size: 0.75rem;
+  color: #dc2626;
+}
+
+.menuSingleItem-priceName {
+  font-size: 1.1rem;
+  font-weight: 800;
+}

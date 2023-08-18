@@ -1,0 +1,95 @@
+.menuContainer {
+  width: 90%;
+  margin: 2rem auto;
+}
+
+.menuContainer-title p {
+  position: relative;
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding: 0.5rem;
+}
+
+.menuContainer-title p::before {
+  position: absolute;
+  content: '';
+  bottom: 0;
+  width: 5.5rem;
+  color: #dc2626;
+  border-bottom: 5px solid;
+  border-radius: 0.25rem;
+}
+
+.menuContainer-btnContainer {
+  width: 100%;
+  padding: 1rem;
+  overflow-x: scroll;
+  display: flex;
+  align-items: center;
+}
+
+.menuContainer-btnContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.menuContainer-btn {
+  min-width: 5.2rem;
+  height: 6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  cursor: pointer;
+  margin: 1rem;
+}
+
+.menuContainer-btn:hover {
+  background-color: #e53935;
+}
+
+.menuContainer-btn:hover .menuContainer-btnIcon {
+  background-color: #fff;
+  color: #000;
+}
+
+.menuContainer-btnIcon {
+  padding: 0.4rem 0.5rem;
+  background-color: aqua;
+  border-radius: 50%;
+}
+
+.menuContainer-btn-active {
+  min-width: 5.2rem;
+  height: 6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #e53935;
+  border-radius: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  cursor: pointer;
+  margin: 1rem;
+}
+
+.menuContainer-btnIcon-active {
+  padding: 0.4rem 0.5rem;
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+.menuContainer-btn p {
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+@media screen and (min-width: 1024px) {
+  .menuContainer-btnContainer {
+    justify-content: center;
+  }
+}
