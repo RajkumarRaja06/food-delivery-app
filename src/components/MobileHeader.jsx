@@ -8,13 +8,18 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 import { UserConsumer } from '../context/userContext';
+import { CartConsumer } from '../context/cartContext';
 
 const MobileHeader = () => {
+  const { showCartFunc } = CartConsumer();
   const { login, userLoginData, isMenu, setIsMenu, logout } = UserConsumer();
 
   return (
     <nav className='mobileHeader'>
-      <div className='mobileHeader-cartContainer'>
+      <div
+        className='mobileHeader-cartContainer'
+        onClick={() => showCartFunc()}
+      >
         <p className='mobileHeader-cart-count'>5</p>
         <GiBeachBag className='mobileHeader-cart' />
       </div>

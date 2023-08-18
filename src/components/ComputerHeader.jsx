@@ -8,8 +8,10 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 import { UserConsumer } from '../context/userContext';
+import { CartConsumer } from '../context/cartContext';
 
 const ComputerHeader = () => {
+  const { showCartFunc } = CartConsumer();
   const { login, userLoginData, isMenu, setIsMenu, logout } = UserConsumer();
 
   return (
@@ -25,10 +27,14 @@ const ComputerHeader = () => {
           <li>About us</li>
           <li>Services</li>
         </ul>
-        <div className='computerHeader-cartContainer'>
+        <motion.div
+          className='computerHeader-cartContainer'
+          whileTap={{ scale: 0.6 }}
+          onClick={() => showCartFunc()}
+        >
           <p className='computerHeader-cart-count'>5</p>
           <GiBeachBag className='computerHeader-cart' />
-        </div>
+        </motion.div>
         <div className='computerHeader-auth'>
           <motion.img
             whileTap={{ scale: 0.6 }}
