@@ -53,7 +53,8 @@ const MenuContainer = () => {
         })}
       </div>
       <div className='menuSingleItem-container'>
-        {data && data.map((item) => <MenuSingleItem item={item} />)}
+        {data &&
+          data.map((item, index) => <MenuSingleItem item={item} key={index} />)}
       </div>
     </section>
   );
