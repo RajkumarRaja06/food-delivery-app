@@ -1,8 +1,10 @@
 import '../styles/menuSingleItem.css';
 import { MdShoppingBasket } from 'react-icons/md';
 import { FaRupeeSign } from 'react-icons/fa';
+import { CartConsumer } from '../context/cartContext';
 
 const MenuSingleItem = ({ item }) => {
+  const { addToCart } = CartConsumer();
   const { id, title, imageUrl, calories, price } = item;
   return (
     <div className='menuSingleItem' key={id}>
@@ -10,7 +12,10 @@ const MenuSingleItem = ({ item }) => {
         <div className='menuSingleItem-img'>
           <img src={imageUrl} alt={title} />
         </div>
-        <div className='menuSingleItem-addToCart'>
+        <div
+          className='menuSingleItem-addToCart'
+          onClick={() => addToCart(item)}
+        >
           <MdShoppingBasket />
         </div>
       </div>

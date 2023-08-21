@@ -11,7 +11,7 @@ import { UserConsumer } from '../context/userContext';
 import { CartConsumer } from '../context/cartContext';
 
 const ComputerHeader = () => {
-  const { showCartFunc } = CartConsumer();
+  const { showCartFunc, cartItems } = CartConsumer();
   const { login, userLoginData, isMenu, setIsMenu, logout } = UserConsumer();
 
   return (
@@ -32,7 +32,9 @@ const ComputerHeader = () => {
           whileTap={{ scale: 0.6 }}
           onClick={() => showCartFunc()}
         >
-          <p className='computerHeader-cart-count'>5</p>
+          {cartItems && cartItems.length > 0 && (
+            <p className='computerHeader-cart-count'>{cartItems.length}</p>
+          )}
           <GiBeachBag className='computerHeader-cart' />
         </motion.div>
         <div className='computerHeader-auth'>

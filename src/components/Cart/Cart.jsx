@@ -6,8 +6,24 @@ import { BsFilePlusFill, BsFileMinusFill } from 'react-icons/bs';
 import { motion } from 'framer-motion';
 import { CartConsumer } from '../../context/cartContext';
 
+import emptyCart from '../../../public/images/emptyCart.svg';
+import { useEffect, useState } from 'react';
+
 const Cart = () => {
-  const { showCartFunc } = CartConsumer();
+  const [cartData, setCartData] = useState(null);
+  const {
+    showCartFunc,
+    cartItems,
+    addToCart,
+    removeToCart,
+    clearCart,
+    subTotal,
+    itemPrice,
+  } = CartConsumer();
+
+  useEffect(() => {
+    setCartData(cartItems);
+  }, [cartItems]);
 
   return (
     <section className='cart'>
@@ -20,75 +36,93 @@ const Cart = () => {
           <BiSolidLeftArrowCircle />
         </motion.div>
         <p className='cartHeader-title'>Cart</p>
-        <div className='cartHeader-cancelBtn'>
+        <motion.div
+          whileTap={{ scale: 0.6 }}
+          className='cartHeader-cancelBtn'
+          onClick={clearCart}
+        >
           <p>Clear</p>
           <span>
             <MdOutlineClear />
           </span>
-        </div>
+        </motion.div>
       </div>
-      <div className='cartMain'>
-        <div className='cartItemContainer'>
-          <div className='cartItem'>
-            <div className='cartItem-left'>
-              <img
-                src='https://firebasestorage.googleapis.com/v0/b/fooddeliveryapp-e0bc5.appspot.com/o/Images%2F1691939248951%2Fc7.png?alt=media&token=b4b72a09-f5b5-4c3b-aff9-d4dc5be6a716'
-                alt='img'
-              />
-              <div className='cartItem-details'>
-                <h5>Chicken 65</h5>
-                <div className='cartItem-priceContainer'>
-                  <span className='cartItemPriceIcon'>
-                    <FaRupeeSign />
-                  </span>
-                  <span className='cartItemPrice'>150</span>
-                </div>
+      {cartData && cartData.length !== 0 ? (
+        <div className='cartMain'>
+          <div className='cartItemContainer'>
+            {cartItems &&
+              cartItems.map((item) => {
+                const { id, imageUrl, title, quantity, price } = item;
+                return (
+                  <div className='cartItem' key={id}>
+                    <div className='cartItem-left'>
+                      <img src={imageUrl} alt={title} />
+                      <div className='cartItem-details'>
+                        <h5>{title}</h5>
+                        <div className='cartItem-priceContainer'>
+                          <span className='cartItemPriceIcon'>
+                            <FaRupeeSign />
+                          </span>
+                          <span className='cartItemPrice'>
+                            {price * quantity}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className='cartItem-right'>
+                      <span onClick={() => addToCart(item)}>
+                        <BsFilePlusFill />
+                      </span>
+                      <p>
+                        <p>{quantity}</p>
+                      </p>
+                      <span onClick={() => removeToCart(item)}>
+                        <BsFileMinusFill />
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
+          </div>
+          <div className='cartTotalContainer'>
+            <div className='subTotal'>
+              <p>Sub Total</p>
+              <div className='cartAmtContainer'>
+                <span className='cartAmtContainer-icon'>
+                  <FaRupeeSign />
+                </span>
+                <span className='cartAmtContainer-price'>{subTotal}</span>
               </div>
             </div>
-            <div className='cartItem-right'>
-              <span>
-                <BsFilePlusFill />
-              </span>
-              <p>
-                <p>55</p>
-              </p>
-              <span>
-                <BsFileMinusFill />
-              </span>
+            <div className='delivery'>
+              <p>Delivery</p>
+              <div className='cartAmtContainer'>
+                <span className='cartAmtContainer-icon'>
+                  <FaRupeeSign />
+                </span>
+                <span className='cartAmtContainer-price'>25</span>
+              </div>
             </div>
+            <div className='total'>
+              <p>Total</p>
+              <div className='cartAmtContainer'>
+                <span className='cartAmtContainer-totalIcon'>
+                  <FaRupeeSign />
+                </span>
+                <span className='cartAmtContainer-totalPrice'>
+                  {25 + subTotal}
+                </span>
+              </div>
+            </div>
+            <button className='cartCheckOut-btn'>Check Out</button>
           </div>
         </div>
-        <div className='cartTotalContainer'>
-          <div className='subTotal'>
-            <p>Sub Total</p>
-            <div className='cartAmtContainer'>
-              <span className='cartAmtContainer-icon'>
-                <FaRupeeSign />
-              </span>
-              <span className='cartAmtContainer-price'>5525</span>
-            </div>
-          </div>
-          <div className='delivery'>
-            <p>Delivery</p>
-            <div className='cartAmtContainer'>
-              <span className='cartAmtContainer-icon'>
-                <FaRupeeSign />
-              </span>
-              <span className='cartAmtContainer-price'>25</span>
-            </div>
-          </div>
-          <div className='total'>
-            <p>Total</p>
-            <div className='cartAmtContainer'>
-              <span className='cartAmtContainer-totalIcon'>
-                <FaRupeeSign />
-              </span>
-              <span className='cartAmtContainer-totalPrice'>25</span>
-            </div>
-          </div>
-          <button className='cartCheckOut-btn'>Check Out</button>
+      ) : (
+        <div className='emptyCart'>
+          <img src={emptyCart} alt='Empty Cart' />
+          <h2>Add some items to your cart</h2>
         </div>
-      </div>
+      )}
     </section>
   );
 };

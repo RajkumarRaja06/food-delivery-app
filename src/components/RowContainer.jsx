@@ -10,8 +10,10 @@ import React, { useRef, useState, useEffect } from 'react';
 import Slider from 'react-slick';
 
 import { CreateItemConsumer } from '../context/createItemContext';
+import { CartConsumer } from '../context/cartContext';
 
 const RowContainer = () => {
+  const { addToCart } = CartConsumer();
   const { foodData } = CreateItemConsumer();
   const [data, setData] = useState(foodData);
 
@@ -123,7 +125,10 @@ const RowContainer = () => {
                       <div className='rowContainer-img'>
                         <img src={imageUrl} alt={title} />
                       </div>
-                      <div className='rowContainer-addToCart'>
+                      <div
+                        className='rowContainer-addToCart'
+                        onClick={() => addToCart(item)}
+                      >
                         <MdShoppingBasket />
                       </div>
                     </div>

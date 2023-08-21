@@ -37,6 +37,7 @@
 
 .cartHeader-icon {
   font-size: 1.5rem;
+  cursor: pointer;
 }
 
 .cartHeader-title {
@@ -53,6 +54,7 @@
   gap: 0.35rem;
   border-radius: 0.25rem;
   font-weight: 500;
+  cursor: pointer;
 }
 
 .cartHeader-cancelBtn span {
@@ -261,6 +263,15 @@
 
 .cartCheckOut-btn:hover {
   filter: brightness(80%);
+}
+
+.emptyCart {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }
 
 @media screen and (min-width: 768px) {

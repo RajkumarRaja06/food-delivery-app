@@ -11,7 +11,7 @@ import { UserConsumer } from '../context/userContext';
 import { CartConsumer } from '../context/cartContext';
 
 const MobileHeader = () => {
-  const { showCartFunc } = CartConsumer();
+  const { showCartFunc, cartItems } = CartConsumer();
   const { login, userLoginData, isMenu, setIsMenu, logout } = UserConsumer();
 
   return (
@@ -20,7 +20,9 @@ const MobileHeader = () => {
         className='mobileHeader-cartContainer'
         onClick={() => showCartFunc()}
       >
-        <p className='mobileHeader-cart-count'>5</p>
+        {cartItems && cartItems.length > 0 && (
+          <p className='mobileHeader-cart-count'>{cartItems.length}</p>
+        )}
         <GiBeachBag className='mobileHeader-cart' />
       </div>
       <div className='mobileHeader-logo'>
