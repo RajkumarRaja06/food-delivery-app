@@ -6,6 +6,9 @@ import {
   useReducer,
 } from 'react';
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import reducer from '../utils/reducer/cartReducer';
 
 const CartContext = createContext();
@@ -27,14 +30,17 @@ const CartProvider = ({ children }) => {
 
   const addToCart = (item) => {
     dispatch({ type: 'ADD_TO_CART', item: item });
+    toast.success('Successfully Add To Cart');
   };
 
   const removeToCart = (item) => {
     dispatch({ type: 'REMOVE_TO_CART', item: item });
+    toast.success('Successfully Remove To Cart');
   };
 
   const clearCart = () => {
     dispatch({ type: 'CLEAR_CART' });
+    toast.success('Successfully Clear Cart');
   };
 
   useEffect(() => {

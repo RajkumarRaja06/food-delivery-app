@@ -19,7 +19,7 @@ const ComputerHeader = () => {
       <div className='computerHeader-logo'>
         <img src={logo} alt='Profile Picture ' />
         <p className='computerHeader-logo-name'>
-          Quick <span>eat</span>
+          Quick<span>eat</span>
         </p>
       </div>
       <div className='computerHeader-menu'>

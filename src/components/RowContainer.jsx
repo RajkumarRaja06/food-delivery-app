@@ -6,6 +6,9 @@ import { FaRupeeSign } from 'react-icons/fa';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import React, { useRef, useState, useEffect } from 'react';
 import Slider from 'react-slick';
 
@@ -150,6 +153,7 @@ const RowContainer = () => {
             })}
         </Slider>
       </div>
+      <ToastContainer />
     </section>
   );
 };

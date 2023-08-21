@@ -5,6 +5,8 @@ import { FaRupeeSign } from 'react-icons/fa';
 import { BsFilePlusFill, BsFileMinusFill } from 'react-icons/bs';
 import { motion } from 'framer-motion';
 import { CartConsumer } from '../../context/cartContext';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import emptyCart from '../../../public/images/emptyCart.svg';
 import { useEffect, useState } from 'react';
@@ -123,6 +125,7 @@ const Cart = () => {
           <h2>Add some items to your cart</h2>
         </div>
       )}
+      <ToastContainer />
     </section>
   );
 };

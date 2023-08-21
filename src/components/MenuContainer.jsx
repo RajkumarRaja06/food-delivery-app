@@ -6,6 +6,9 @@ import { motion } from 'framer-motion';
 import MenuSingleItem from './MenuSingleItem';
 import { CreateItemConsumer } from '../context/createItemContext';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const MenuContainer = () => {
   const { foodData } = CreateItemConsumer();
   const [data, setData] = useState(foodData);
@@ -56,6 +59,7 @@ const MenuContainer = () => {
         {data &&
           data.map((item, index) => <MenuSingleItem item={item} key={index} />)}
       </div>
+      <ToastContainer />
     </section>
   );
 };
