@@ -18,14 +18,24 @@ const ComputerHeader = () => {
     <nav className='computerHeader'>
       <div className='computerHeader-logo'>
         <img src={logo} alt='Profile Picture ' />
-        <p className='computerHeader-logo-name'>Food</p>
+        <p className='computerHeader-logo-name'>
+          Quick <span>eat</span>
+        </p>
       </div>
       <div className='computerHeader-menu'>
         <ul className='computerHeader-menu-links'>
-          <li>Home</li>
-          <li>Menu</li>
-          <li>About us</li>
-          <li>Services</li>
+          <li>
+            <a href='#home'>Home</a>
+          </li>
+          <li>
+            <a href='#menu'>Menu</a>
+          </li>
+          <li>
+            <a href='#about'>About us</a>
+          </li>
+          <li>
+            <a href='#services'>Services</a>
+          </li>
         </ul>
         <motion.div
           className='computerHeader-cartContainer'

@@ -29,8 +29,12 @@
 .mobileHeader-logo-name {
   font-size: 1.1rem;
   text-transform: uppercase;
-  font-weight: 800;
-  color: #000;
+  font-weight: 900;
+  color: #d62626;
+}
+
+.mobileHeader-logo-name span {
+  color: #fea116;
 }
 
 .mobileHeader-menu {
@@ -57,14 +61,15 @@
     rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
 }
 
-.mobileHeader-menu-links li {
+.mobileHeader-menu-links li a {
   width: 100%;
   font-weight: 500;
   font-size: 1rem;
   padding: 0.5rem 0.5rem;
+  color: #000;
 }
 
-.mobileHeader-menu-links li:hover {
+.mobileHeader-menu-links li a:hover {
   background-color: #e9ecef;
   transition: 0.5s ease-in-out;
 }
@@ -162,9 +167,14 @@
 }
 
 .computerHeader-logo-name {
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   text-transform: uppercase;
-  font-weight: 800;
+  font-weight: 900;
+  color: #d62626;
+}
+
+.computerHeader-logo-name span {
+  color: #fea116;
 }
 
 .computerHeader-menu,
@@ -179,6 +189,15 @@
 
 .computerHeader-menu-links ul {
   display: none;
+}
+
+.computerHeader-menu-links li a {
+  color: #000;
+  font-weight: 700;
+}
+
+.computerHeader-menu-links li a:hover {
+  color: #adb5bd;
 }
 
 .computerHeader-auth img {

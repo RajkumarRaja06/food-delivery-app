@@ -1,5 +1,11 @@
 import '../styles/index.css';
-import { Home, RowContainer, MenuContainer, Cart } from '../components';
+import {
+  Home,
+  RowContainer,
+  MenuContainer,
+  Cart,
+  MenuItem,
+} from '../components';
 import { CartConsumer } from '../context/cartContext';
 
 const HomeContainer = () => {
@@ -10,6 +16,8 @@ const HomeContainer = () => {
       <RowContainer />
       <MenuContainer />
       {cartShow && <Cart />}
+
+      <MenuItem />
     </>
   );
 };

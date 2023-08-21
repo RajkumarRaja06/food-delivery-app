@@ -1,0 +1,50 @@
+.footer {
+  margin-top: 1.75rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #334155;
+  padding: 1.5rem;
+  gap: 1.75rem;
+  color: #fff;
+}
+
+.footer p {
+  width: 100%;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.footer p a {
+  color: #fff;
+
+  cursor: pointer;
+}
+
+.footer p a:hover {
+  color: #dc2626;
+}
+
+.footerLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.footerLink span {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.footerLink span a {
+  font-size: 1.5rem;
+  color: inherit;
+}
+
+.footerLink span:hover {
+  color: #dc2626;
+}

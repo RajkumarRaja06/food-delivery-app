@@ -21,7 +21,7 @@ const MenuContainer = () => {
   }, [filter]);
 
   return (
-    <section className='menuContainer'>
+    <section className='menuContainer' id='menu'>
       <div className='menuContainer-title'>
         <p>Our Hot Dishes</p>
       </div>

@@ -6,6 +6,8 @@ import RowContainer from './RowContainer';
 import Home from './Home';
 import MenuContainer from './MenuContainer';
 import Cart from './Cart/Cart';
+import MenuItem from './MenuItem';
+import Footer from './Footer';
 
 export {
   MobileHeader,
@@ -16,4 +18,6 @@ export {
   Home,
   MenuContainer,
   Cart,
+  MenuItem,
+  Footer,
 };
