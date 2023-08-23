@@ -5,6 +5,7 @@ import {
   MenuContainer,
   Cart,
   MenuItem,
+  ServiceForm,
 } from '../components';
 import { CartConsumer } from '../context/cartContext';
 
@@ -18,6 +19,7 @@ const HomeContainer = () => {
       {cartShow && <Cart />}
 
       <MenuItem />
+      <ServiceForm />
     </>
   );
 };

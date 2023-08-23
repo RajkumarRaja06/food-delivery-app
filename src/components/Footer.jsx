@@ -3,7 +3,7 @@ import '../styles/footer.css';
 
 const Footer = () => {
   return (
-    <footer className='footer' id='services'>
+    <footer className='footer'>
       <p>
         Copyright © React Food App 2023. All rights reserved{' '}
         <a href='https://rajkumarraja-portfolio.netlify.app/' target='_blank'>

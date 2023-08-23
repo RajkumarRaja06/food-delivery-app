@@ -1,0 +1,87 @@
+.serviceForm {
+  max-width: 80%;
+  height: 20rem;
+  background-image: url(../../public//images/bg-hero.jpg);
+  background-color: #cccccc;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 5.5rem auto;
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  color: #fff;
+}
+
+.serviceForm h1 {
+  text-align: center;
+  color: #fff;
+  z-index: 1000;
+  font-weight: 900;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.serviceForm-input {
+  width: 90%;
+  height: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1.5rem;
+  gap: 1.75rem;
+}
+
+.serviceForm-input input {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(15, 23, 43, 0.9), rgba(15, 23, 43, 0.9));
+  border: none;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.serviceForm-input button {
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 0.45rem;
+  font-size: 1rem;
+  color: #fff;
+  font-weight: 700;
+  background-color: #fe7f2d;
+  cursor: pointer;
+}
+
+.serviceForm-input button:hover {
+  filter: brightness(120%);
+}
+
+.serviceForm-input button span {
+  position: relative;
+  top: 2px;
+  font-size: 1rem;
+  font-weight: 900;
+  margin-left: 0.25rem;
+}
+
+@media screen and (min-width: 768px) {
+  .serviceForm-input {
+    position: relative;
+    width: 60%;
+  }
+  .serviceForm-input button {
+    position: absolute;
+    right: 2%;
+    border-radius: 1.75rem;
+    padding: 0.75rem 1.75rem;
+  }
+  .serviceForm-input input {
+    border-radius: 1.75rem;
+    font-weight: 800;
+  }
+}

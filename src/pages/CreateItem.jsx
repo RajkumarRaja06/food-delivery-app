@@ -98,7 +98,7 @@ const CreateItem = () => {
             className='formCategory'
             onChange={(e) => setCategory(e.target.value)}
           >
-            <option value='other' defaultChecked>
+            <option value='' selected disabled hidden>
               Select Category
             </option>
             {categories.map((category) => (

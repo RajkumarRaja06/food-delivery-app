@@ -8,6 +8,7 @@ import MenuContainer from './MenuContainer';
 import Cart from './Cart/Cart';
 import MenuItem from './MenuItem';
 import Footer from './Footer';
+import ServiceForm from './ServiceForm';
 
 export {
   MobileHeader,
@@ -20,4 +21,5 @@ export {
   Cart,
   MenuItem,
   Footer,
+  ServiceForm,
 };

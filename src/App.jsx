@@ -1,5 +1,11 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { CartContainer, CreateItem, RootLayout, HomeContainer } from './pages';
+import {
+  CartContainer,
+  CreateItem,
+  RootLayout,
+  HomeContainer,
+  Profile,
+} from './pages';
 
 const App = () => {
   return (
@@ -9,6 +15,7 @@ const App = () => {
           <Route index element={<HomeContainer />} />
           <Route path='createItem' element={<CreateItem />} />
           <Route path='cartContainer' element={<CartContainer />} />
+          <Route path='profile' element={<Profile />} />
         </Route>
       </Routes>
     </BrowserRouter>

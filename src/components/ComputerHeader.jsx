@@ -2,6 +2,7 @@ import logo from '../../public/images/logo.png';
 import avatar from '../../public/images/avatar.png';
 import '../styles/header.css';
 import { GiBeachBag } from 'react-icons/gi';
+import { CgProfile } from 'react-icons/cg';
 import { BsPlusCircleDotted } from 'react-icons/bs';
 import { FiLogOut } from 'react-icons/fi';
 import { motion } from 'framer-motion';
@@ -74,6 +75,14 @@ const ComputerHeader = () => {
                 <></>
               )}
 
+              <div className='computerHeader-profile'>
+                <Link to='profile'>
+                  <span>Profile</span>
+                  <span>
+                    <CgProfile />
+                  </span>
+                </Link>
+              </div>
               <div className='computerHeader-logout' onClick={logout}>
                 <span>Logout</span>
                 <span>

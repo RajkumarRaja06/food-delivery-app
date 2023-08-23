@@ -61,15 +61,19 @@
     rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
 }
 
-.mobileHeader-menu-links li a {
+.mobileHeader-menu-links li {
   width: 100%;
   font-weight: 500;
   font-size: 1rem;
   padding: 0.5rem 0.5rem;
+}
+
+.mobileHeader-menu-links li a {
   color: #000;
 }
 
-.mobileHeader-menu-links li a:hover {
+.mobileHeader-menu-links li:hover,
+.mobileHeader-profile:hover {
   background-color: #e9ecef;
   transition: 0.5s ease-in-out;
 }
@@ -86,6 +90,14 @@
   width: 100%;
   display: flex;
   padding: 0.5rem 0.5rem;
+}
+
+.mobileHeader-profile a {
+  width: 100%;
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem 0.5rem;
+  color: #000;
 }
 
 .mobileHeader-addItem span,
@@ -255,6 +267,16 @@
   padding: 0.5rem 0.5rem;
 }
 
+.computerHeader-profile a {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.5rem;
+  color: #000;
+}
+
 .computerHeader-addItem span,
 .computerHeader-logout span {
   border-radius: 0.75rem;
@@ -268,7 +290,8 @@
   transition: 0.5s ease-in-out;
 }
 
-.computerHeader-logout:hover {
+.computerHeader-logout:hover,
+.computerHeader-profile:hover {
   background-color: #e9ecef;
   border-bottom-right-radius: 1rem;
   border-bottom-left-radius: 0.75rem;

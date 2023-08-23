@@ -6,6 +6,7 @@ import { BsPlusCircleDotted } from 'react-icons/bs';
 import { FiLogOut } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { CgProfile } from 'react-icons/cg';
 
 import { UserConsumer } from '../context/userContext';
 import { CartConsumer } from '../context/cartContext';
@@ -71,6 +72,14 @@ const MobileHeader = () => {
                   <a href='#services'>Services</a>
                 </li>
               </ul>
+              <div className='mobileHeader-profile'>
+                <Link to='profile'>
+                  <span>Profile</span>
+                  <span>
+                    <CgProfile />
+                  </span>
+                </Link>
+              </div>
               <div className='mobileHeader-logout' onClick={logout}>
                 <span>Logout</span>
                 <span>
