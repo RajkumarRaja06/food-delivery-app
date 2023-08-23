@@ -5,9 +5,13 @@ import {
   RootLayout,
   HomeContainer,
   Profile,
+  LoginCredentials,
 } from './pages';
 
+import { UserConsumer } from './context/userContext';
+
 const App = () => {
+  const { userLoginData } = UserConsumer();
   return (
     <BrowserRouter>
       <Routes>
@@ -15,7 +19,8 @@ const App = () => {
           <Route index element={<HomeContainer />} />
           <Route path='createItem' element={<CreateItem />} />
           <Route path='cartContainer' element={<CartContainer />} />
-          <Route path='profile' element={<Profile />} />
+          <Route path='loginCredentials' element={<LoginCredentials />} />
+          {userLoginData && <Route path='profile' element={<Profile />} />}
         </Route>
       </Routes>
     </BrowserRouter>

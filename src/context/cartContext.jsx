@@ -17,7 +17,6 @@ const initialState = {
   cartItems: [],
   subTotal: 0,
   itemPrice: 0,
-
   cartShow: false,
 };
 
@@ -43,13 +42,25 @@ const CartProvider = ({ children }) => {
     toast.success('Successfully Clear Cart');
   };
 
+  const checkOut = () => {
+    dispatch({ type: 'CHECKOUT' });
+    toast.success('Your Order Is Placed');
+  };
+
   useEffect(() => {
     dispatch({ type: 'UPDATE_PRICE' });
   }, [state.cartItems]);
 
   return (
     <CartContext.Provider
-      value={{ ...state, showCartFunc, addToCart, removeToCart, clearCart }}
+      value={{
+        ...state,
+        showCartFunc,
+        addToCart,
+        removeToCart,
+        clearCart,
+        checkOut,
+      }}
     >
       {children}
     </CartContext.Provider>

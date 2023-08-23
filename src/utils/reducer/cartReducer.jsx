@@ -6,6 +6,9 @@ const cartReducer = (state, action) => {
     case 'CLEAR_CART':
       return { ...state, cartItems: [] };
 
+    case 'CHECKOUT':
+      return { ...state, cartItems: [], cartShow: false };
+
     case 'ADD_TO_CART':
       const existedItem = state.cartItems.find(
         (cartItem) => cartItem.id === action.item.id

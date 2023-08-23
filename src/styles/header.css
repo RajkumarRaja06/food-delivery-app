@@ -245,6 +245,42 @@
   justify-content: center;
 }
 
+.computerHeader-authContainer {
+  width: 12rem;
+  background-color: #fff;
+  position: absolute;
+  top: 3rem;
+  right: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 0.75rem;
+}
+
+.computerHeader-authContainer p {
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+  padding: 0.5rem 0.2rem;
+  font-size: 1.1rem;
+  background: linear-gradient(to right, #f32170, #ffeb07, #2196f3, #ff00eb);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+
+.computerHeader-authContainer p:hover {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(121, 112, 9, 1) 87%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+
 .computerHeader-loginContainer {
   width: 8rem;
   position: absolute;

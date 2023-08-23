@@ -13,7 +13,15 @@ import { CartConsumer } from '../context/cartContext';
 
 const MobileHeader = () => {
   const { showCartFunc, cartItems } = CartConsumer();
-  const { login, userLoginData, isMenu, setIsMenu, logout } = UserConsumer();
+  const {
+    login,
+    userLoginData,
+    isMenu,
+    setIsMenu,
+    logout,
+    authContainer,
+    setAuthContainer,
+  } = UserConsumer();
 
   return (
     <nav className='mobileHeader'>
@@ -26,20 +34,30 @@ const MobileHeader = () => {
         )}
         <GiBeachBag className='mobileHeader-cart' />
       </div>
-      <div className='mobileHeader-logo'>
+      <Link className='mobileHeader-logo' to='/'>
         <img src={logo} alt='Profile Picture ' />
         <p className='mobileHeader-logo-name'>
           Quick<span>eat</span>
         </p>
-      </div>
+      </Link>
       <div className='mobileHeader-menu'>
         <div className='mobileHeader-auth'>
           <motion.img
             whileTap={{ scale: 0.6 }}
             src={userLoginData ? userLoginData.photoURL : avatar}
             alt='Avatar '
-            onClick={login}
+            onClick={
+              userLoginData ? login : () => setAuthContainer(!authContainer)
+            }
           />
+          {authContainer && (
+            <div className='computerHeader-authContainer'>
+              <p onClick={login}>Google</p>
+              <p>
+                <Link to='loginCredentials'>Login Credentials</Link>
+              </p>
+            </div>
+          )}
           {isMenu && (
             <div
               className='mobileHeader-menu-links'

@@ -21,6 +21,7 @@ const Cart = () => {
     clearCart,
     subTotal,
     itemPrice,
+    checkOut,
   } = CartConsumer();
 
   useEffect(() => {
@@ -38,16 +39,18 @@ const Cart = () => {
           <BiSolidLeftArrowCircle />
         </motion.div>
         <p className='cartHeader-title'>Cart</p>
-        <motion.div
-          whileTap={{ scale: 0.6 }}
-          className='cartHeader-cancelBtn'
-          onClick={clearCart}
-        >
-          <p>Clear</p>
-          <span>
-            <MdOutlineClear />
-          </span>
-        </motion.div>
+        {cartItems && cartItems.length > 0 && (
+          <motion.div
+            whileTap={{ scale: 0.6 }}
+            className='cartHeader-cancelBtn'
+            onClick={clearCart}
+          >
+            <p>Clear</p>
+            <span>
+              <MdOutlineClear />
+            </span>
+          </motion.div>
+        )}
       </div>
       {cartData && cartData.length !== 0 ? (
         <div className='cartMain'>
@@ -116,7 +119,9 @@ const Cart = () => {
                 </span>
               </div>
             </div>
-            <button className='cartCheckOut-btn'>Check Out</button>
+            <button className='cartCheckOut-btn' onClick={checkOut}>
+              Check Out
+            </button>
           </div>
         </div>
       ) : (

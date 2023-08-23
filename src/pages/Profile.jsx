@@ -1,5 +1,6 @@
 import { UserConsumer } from '../context/userContext';
 import '../styles/profile.css';
+import avatar from '../../public/images/avatar.png';
 
 const Profile = () => {
   const { userLoginData } = UserConsumer();
@@ -9,7 +10,7 @@ const Profile = () => {
   return (
     <section className='profile'>
       <div className='profile-img'>
-        <img src={photoURL} alt='' />
+        <img src={photoURL ? photoURL : avatar} alt={displayName} />
       </div>
 
       <div className='profile-data'>

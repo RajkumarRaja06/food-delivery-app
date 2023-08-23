@@ -8,6 +8,7 @@ const UserContext = createContext();
 const UserProvider = ({ children }) => {
   const [userLoginData, setUserLoginData] = useState(null);
   const [isMenu, setIsMenu] = useState(false);
+  const [authContainer, setAuthContainer] = useState(false);
 
   const userInfo =
     localStorage.getItem('user') === 'undefined'
@@ -20,6 +21,7 @@ const UserProvider = ({ children }) => {
 
   const login = async () => {
     if (!userLoginData) {
+      setAuthContainer(!authContainer);
       const { user } = await signInWithPopup(auth, provider);
       const { providerData } = user;
       localStorage.setItem('user', JSON.stringify(providerData[0]));
@@ -43,6 +45,8 @@ const UserProvider = ({ children }) => {
         isMenu,
         setIsMenu,
         logout,
+        authContainer,
+        setAuthContainer,
       }}
     >
       {children}

@@ -8,12 +8,22 @@ import { FiLogOut } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
+import { useNavigate } from 'react-router-dom';
+
 import { UserConsumer } from '../context/userContext';
 import { CartConsumer } from '../context/cartContext';
 
 const ComputerHeader = () => {
   const { showCartFunc, cartItems } = CartConsumer();
-  const { login, userLoginData, isMenu, setIsMenu, logout } = UserConsumer();
+  const {
+    login,
+    userLoginData,
+    isMenu,
+    setIsMenu,
+    logout,
+    authContainer,
+    setAuthContainer,
+  } = UserConsumer();
 
   return (
     <nav className='computerHeader'>
@@ -54,8 +64,19 @@ const ComputerHeader = () => {
             img
             src={userLoginData ? userLoginData.photoURL : avatar}
             alt='Avatar '
-            onClick={login}
+            onClick={
+              userLoginData ? login : () => setAuthContainer(!authContainer)
+            }
           />
+          {authContainer && (
+            <div className='computerHeader-authContainer'>
+              <p onClick={login}>Google</p>
+              <p>
+                <Link to='loginCredentials'>Login Credentials</Link>
+              </p>
+            </div>
+          )}
+
           {isMenu && (
             <div
               className='computerHeader-loginContainer'
