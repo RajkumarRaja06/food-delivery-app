@@ -2,7 +2,10 @@ import '../styles/home.css';
 import delivery from '../../public/images/delivery.png';
 import homeImg from '../../public/images/home.png';
 
+import { CartConsumer } from '../context/cartContext';
+
 const Home = () => {
+  const { showCartFunc } = CartConsumer();
   return (
     <div className='home' id='home'>
       <div className='homeContent'>
@@ -17,7 +20,9 @@ const Home = () => {
           lorem sit clita duo justo magna dolore erat amet
         </div>
         <div className='homeContent-btn'>
-          <button type='button'>Order Now</button>
+          <button type='button' onClick={showCartFunc}>
+            Order Now
+          </button>
         </div>
       </div>
       <div className='homeImgContainer'>
