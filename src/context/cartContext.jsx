@@ -35,7 +35,7 @@ const CartProvider = ({ children }) => {
 
   const removeToCart = (item) => {
     dispatch({ type: 'REMOVE_TO_CART', item: item });
-    toast.success('Successfully Remove To Cart');
+    toast.success('Successfully removed from the cart');
   };
 
   const clearCart = () => {
