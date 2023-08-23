@@ -27,12 +27,12 @@ const ComputerHeader = () => {
 
   return (
     <nav className='computerHeader'>
-      <div className='computerHeader-logo'>
+      <Link className='computerHeader-logo' to='/'>
         <img src={logo} alt='Profile Picture ' />
         <p className='computerHeader-logo-name'>
           Quick<span>eat</span>
         </p>
-      </div>
+      </Link>
       <div className='computerHeader-menu'>
         <ul className='computerHeader-menu-links'>
           <li>
