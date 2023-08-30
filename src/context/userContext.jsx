@@ -30,7 +30,6 @@ const UserProvider = ({ children }) => {
   const [isUserLogIn, setIsUserLogIn] = useState(userLoginData);
 
   const [isEditing, setIsEditing] = useState(false);
-  const [profilePicture, setProfilePicture] = useState();
 
   const [id, setId] = useState('');
   const [name, setName] = useState('');
@@ -91,7 +90,6 @@ const UserProvider = ({ children }) => {
         setSelectCity(filterUser.selectCity);
         setGender(filterUser.gender);
         setImage(filterUser.image);
-        setProfilePicture(filterUser.image);
         setNumber(filterUser.number);
       }
     }
@@ -145,9 +143,7 @@ const UserProvider = ({ children }) => {
   useEffect(() => {
     setUserLoginData(userInfo);
     userInfo ? setIsUserLogIn(true) : setIsUserLogIn(false);
-    image && setProfilePicture(image);
     fetchProfileData();
-    getUserProfile();
   }, []);
 
   return (
