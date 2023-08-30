@@ -59,7 +59,6 @@ const MenuContainer = () => {
         {data &&
           data.map((item, index) => <MenuSingleItem item={item} key={index} />)}
       </div>
-      <ToastContainer />
     </section>
   );
 };

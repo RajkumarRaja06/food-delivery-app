@@ -6,16 +6,17 @@ import { FaRupeeSign } from 'react-icons/fa';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 import React, { useRef, useState, useEffect } from 'react';
 import Slider from 'react-slick';
 
 import { CreateItemConsumer } from '../context/createItemContext';
 import { CartConsumer } from '../context/cartContext';
+import { UserConsumer } from '../context/userContext';
+
+import { toast } from 'react-toastify';
 
 const RowContainer = () => {
+  const { isUserLogIn } = UserConsumer();
   const { addToCart } = CartConsumer();
   const { foodData } = CreateItemConsumer();
   const [data, setData] = useState(foodData);
@@ -23,6 +24,10 @@ const RowContainer = () => {
   useEffect(() => {
     setData(foodData && foodData.filter((item) => item.category === 'fruits'));
   }, [foodData]);
+
+  const notifyMsg = () => {
+    toast.warning('Please LogIn!');
+  };
 
   const customSlider = useRef();
 
@@ -130,7 +135,9 @@ const RowContainer = () => {
                       </div>
                       <div
                         className='rowContainer-addToCart'
-                        onClick={() => addToCart(item)}
+                        onClick={
+                          isUserLogIn ? () => addToCart(item) : notifyMsg
+                        }
                       >
                         <MdShoppingBasket />
                       </div>
@@ -153,7 +160,6 @@ const RowContainer = () => {
             })}
         </Slider>
       </div>
-      <ToastContainer />
     </section>
   );
 };

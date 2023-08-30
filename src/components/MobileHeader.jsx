@@ -1,5 +1,6 @@
 import logo from '../../public/images/logo.png';
 import avatar from '../../public/images/avatar.png';
+import emoji from '../../public/images/emoji.svg';
 import '../styles/header.css';
 import { GiBeachBag } from 'react-icons/gi';
 import { BsPlusCircleDotted } from 'react-icons/bs';
@@ -10,6 +11,7 @@ import { CgProfile } from 'react-icons/cg';
 
 import { UserConsumer } from '../context/userContext';
 import { CartConsumer } from '../context/cartContext';
+import { toast } from 'react-toastify';
 
 const MobileHeader = () => {
   const { showCartFunc, cartItems } = CartConsumer();
@@ -21,13 +23,19 @@ const MobileHeader = () => {
     logout,
     authContainer,
     setAuthContainer,
+    isUserLogIn,
+    getUserProfile,
   } = UserConsumer();
+
+  const notifyMsg = () => {
+    toast.warning('Please LogIn!');
+  };
 
   return (
     <nav className='mobileHeader'>
       <div
         className='mobileHeader-cartContainer'
-        onClick={() => showCartFunc()}
+        onClick={isUserLogIn ? () => showCartFunc() : notifyMsg}
       >
         {cartItems && cartItems.length > 0 && (
           <p className='mobileHeader-cart-count'>{cartItems.length}</p>
@@ -44,7 +52,7 @@ const MobileHeader = () => {
         <div className='mobileHeader-auth'>
           <motion.img
             whileTap={{ scale: 0.6 }}
-            src={userLoginData ? userLoginData.photoURL : avatar}
+            src={userLoginData ? emoji : avatar}
             alt='Avatar '
             onClick={
               userLoginData ? login : () => setAuthContainer(!authContainer)
@@ -81,17 +89,17 @@ const MobileHeader = () => {
                   <a href='#home'>Home</a>
                 </li>
                 <li>
-                  <a href='#menu'>Menu</a>
+                  <a href='#menu'>Hot Dishes</a>
                 </li>
                 <li>
-                  <a href='#about'>About us</a>
+                  <a href='#about'>Menu</a>
                 </li>
                 <li>
-                  <a href='#services'>Services</a>
+                  <a href='#services'>Contents Us</a>
                 </li>
               </ul>
               <div className='mobileHeader-profile'>
-                <Link to='profile'>
+                <Link to='profile' onClick={() => getUserProfile()}>
                   <span>Profile</span>
                   <span>
                     <CgProfile />

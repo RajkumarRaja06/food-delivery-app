@@ -1,5 +1,6 @@
 import logo from '../../public/images/logo.png';
 import avatar from '../../public/images/avatar.png';
+import emoji from '../../public/images/emoji.svg';
 import '../styles/header.css';
 import { GiBeachBag } from 'react-icons/gi';
 import { CgProfile } from 'react-icons/cg';
@@ -8,7 +9,7 @@ import { FiLogOut } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
-import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { UserConsumer } from '../context/userContext';
 import { CartConsumer } from '../context/cartContext';
@@ -23,7 +24,12 @@ const ComputerHeader = () => {
     logout,
     authContainer,
     setAuthContainer,
+    isUserLogIn,
   } = UserConsumer();
+
+  const notifyMsg = () => {
+    toast.warning('Please LogIn!');
+  };
 
   return (
     <nav className='computerHeader'>
@@ -39,19 +45,19 @@ const ComputerHeader = () => {
             <a href='#home'>Home</a>
           </li>
           <li>
-            <a href='#menu'>Menu</a>
+            <a href='#menu'>Hot Dishes</a>
           </li>
           <li>
-            <a href='#about'>About us</a>
+            <a href='#about'>Menu</a>
           </li>
           <li>
-            <a href='#services'>Services</a>
+            <a href='#services'>Contents Us</a>
           </li>
         </ul>
         <motion.div
           className='computerHeader-cartContainer'
           whileTap={{ scale: 0.6 }}
-          onClick={() => showCartFunc()}
+          onClick={isUserLogIn ? () => showCartFunc() : notifyMsg}
         >
           {cartItems && cartItems.length > 0 && (
             <p className='computerHeader-cart-count'>{cartItems.length}</p>
@@ -62,7 +68,7 @@ const ComputerHeader = () => {
           <motion.img
             whileTap={{ scale: 0.6 }}
             img
-            src={userLoginData ? userLoginData.photoURL : avatar}
+            src={userLoginData ? emoji : avatar}
             alt='Avatar '
             onClick={
               userLoginData ? login : () => setAuthContainer(!authContainer)

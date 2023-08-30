@@ -2,9 +2,17 @@ import '../styles/menuSingleItem.css';
 import { MdShoppingBasket } from 'react-icons/md';
 import { FaRupeeSign } from 'react-icons/fa';
 import { CartConsumer } from '../context/cartContext';
+import { UserConsumer } from '../context/userContext';
+import { toast } from 'react-toastify';
 
 const MenuSingleItem = ({ item }) => {
+  const { isUserLogIn } = UserConsumer();
   const { addToCart } = CartConsumer();
+
+  const notifyMsg = () => {
+    toast.warning('Please LogIn!');
+  };
+
   const { id, title, imageUrl, calories, price } = item;
   return (
     <div className='menuSingleItem' key={id}>
@@ -14,7 +22,7 @@ const MenuSingleItem = ({ item }) => {
         </div>
         <div
           className='menuSingleItem-addToCart'
-          onClick={() => addToCart(item)}
+          onClick={isUserLogIn ? () => addToCart(item) : notifyMsg}
         >
           <MdShoppingBasket />
         </div>

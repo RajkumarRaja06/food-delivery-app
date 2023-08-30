@@ -130,7 +130,6 @@ const Cart = () => {
           <h2>Add some items to your cart</h2>
         </div>
       )}
-      <ToastContainer />
     </section>
   );
 };

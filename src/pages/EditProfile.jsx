@@ -1,22 +1,32 @@
-import '../styles/profile.css';
 import { UserConsumer } from '../context/userContext';
+import '../styles/profile.css';
 import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import { signOut } from 'firebase/auth';
-import { auth } from '../utils/firebase';
 import { useEffect } from 'react';
+import { doc, updateDoc } from 'firebase/firestore';
+import { firestore, auth } from '../utils/firebase';
+import { setProfileData } from '../utils/firebaseFunction';
+import { toast } from 'react-toastify';
 
-const Profile = () => {
+const EditProfile = () => {
   const {
+    id,
     name,
+    setName,
     email,
     selectCity,
+    setSelectCity,
     gender,
+    setGender,
     image,
     number,
+    setNumber,
+    getImageUrl,
+    fetchProfileData,
     isEditing,
+    setIsEditing,
     getUserProfile,
     profileData,
+    emptyValue,
   } = UserConsumer();
 
   useEffect(() => {
@@ -25,8 +35,50 @@ const Profile = () => {
 
   const navigate = useNavigate();
 
-  const doneBtn = () => {
-    navigate('/');
+  const addProfileData = async () => {
+    if (name && number && selectCity && gender && image) {
+      if (number.length === 10) {
+        if (!isEditing) {
+          const data = {
+            id: auth.currentUser.uid,
+            name,
+            email,
+            number,
+            image,
+            selectCity,
+            gender,
+          };
+          setProfileData(data);
+          fetchProfileData();
+          emptyValue();
+          navigate('/');
+          toast.success('Successfully Add New Profile');
+        } else {
+          try {
+            const itemToEditRef = doc(firestore, 'usersProfile', id);
+            await updateDoc(itemToEditRef, {
+              id,
+              name,
+              email,
+              number,
+              image,
+              selectCity,
+              gender,
+            });
+          } catch (error) {
+            console.log(error);
+          }
+          fetchProfileData();
+          emptyValue();
+          navigate('/');
+          toast.success('Successfully Update Profile');
+        }
+      } else {
+        toast.warning('Enter a valid number!');
+      }
+    } else {
+      toast.error('Input Field Is Mandatory!');
+    }
   };
 
   return (
@@ -37,20 +89,20 @@ const Profile = () => {
 
       <from className='profile-data'>
         <h1>Your Profile</h1>
-        <div className='profile-row-readonly'>
+        <div className='profile-row'>
           <div className='profile-name'>
             <label htmlFor='name'>User Name</label>
             <input
               type='text'
               value={name}
-              name='Username'
+              name='name'
               id='name'
-              readOnly
-              placeholder='nill'
+              onChange={(event) => setName(event.target.value)}
+              placeholder='User Name'
             />
           </div>
         </div>
-        <div className='profile-row-readonly'>
+        <div className='profile-row'>
           <div className='profile-email'>
             <label htmlFor='id_cmp_email'>Email</label>
             <input
@@ -68,15 +120,20 @@ const Profile = () => {
               value={number}
               name='number'
               id='number'
-              readOnly
-              placeholder='nill'
+              onChange={(event) => setNumber(event.target.value)}
+              placeholder='Mobile Number'
             />
           </div>
         </div>
-        <div className='profile-row-readonly'>
+        <div className='profile-row'>
           <div className='profile-city'>
             <label htmlFor='city'>Select City</label>
-            <select value={selectCity} id='city' readOnly>
+            <select
+              value={selectCity}
+              onChange={(e) => setSelectCity(e.target.value)}
+              id='city'
+              placeholder='City'
+            >
               <option>Select City</option>
               <option value='Namakkal'>Namakkal</option>
               <option value='Salem'>Salem</option>
@@ -91,7 +148,10 @@ const Profile = () => {
           </div>
           <div className='profile-radio'>
             <label>Gender</label>
-            <div className='profile-radioContainer'>
+            <div
+              className='profile-radioContainer'
+              onChange={(event) => setGender(event.target.value)}
+            >
               <div>
                 <input
                   type='radio'
@@ -99,7 +159,6 @@ const Profile = () => {
                   id='Male'
                   name='gender'
                   checked={'Male' === gender}
-                  readOnly
                 />
                 <label htmlFor='Male'>Male</label>
               </div>
@@ -110,7 +169,6 @@ const Profile = () => {
                   id='Female'
                   name='gender'
                   checked={'Female' === gender}
-                  readOnly
                 />
                 <label htmlFor='Female'>Female</label>
               </div>
@@ -122,25 +180,32 @@ const Profile = () => {
                   id='Other'
                   name='gender'
                   checked={'Other' === gender}
-                  readOnly
                 />
                 <label htmlFor='Other'>Other</label>
               </div>
             </div>
           </div>
         </div>
-        <div className='profile-row-readonly'></div>
+        <div className='profile-inputImg'>
+          <div>
+            <label htmlFor='image'>Upload Your Profile Picture</label>
+            <input
+              type='file'
+              name='image'
+              accept='image/*'
+              id='image'
+              onChange={(event) => getImageUrl(event)}
+            />
+          </div>
+        </div>
         <div className='profile-btnContainer'>
-          <Link to='/editProfile'>
-            <button type='submit'>
-              {!isEditing ? 'Add Profile' : 'Edit Profile'}
-            </button>
-          </Link>
-          {isEditing && <button onClick={doneBtn}>Done</button>}
+          <button type='submit' onClick={(e) => addProfileData(e.target.value)}>
+            Save
+          </button>
         </div>
       </from>
     </section>
   );
 };
 
-export default Profile;
+export default EditProfile;

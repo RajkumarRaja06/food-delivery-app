@@ -1,75 +1,74 @@
 import { AiOutlineSend } from 'react-icons/ai';
 import '../styles/loginCredentials.css';
-import img from '../../public/images/emoji.svg';
 import { useState } from 'react';
 import { UserConsumer } from '../context/userContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../utils/firebase';
 
 const LoginCredentials = () => {
+  const [isTrailBtn, setIsTrailBtn] = useState(false);
   const { setUserLoginData, setAuthContainer } = UserConsumer();
-  const [users, setUsers] = useState({ name: '', email: '' });
-  const { name, email } = users;
+  const [newEmail, setNewEmail] = useState();
+  const [password, setPassword] = useState();
 
   const navigate = useNavigate();
 
-  function handleOnchange(event) {
-    const value = event.target.value;
-    const key = event.target.name;
-    setUsers({
-      ...users,
-      [key]: value,
-    });
-  }
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    await signInWithEmailAndPassword(auth, newEmail, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
 
-  function clearInputField() {
-    setUsers({ name: '', email: '' });
-  }
+        const { providerData } = user;
 
-  const goBack = () => {
-    navigate(-1);
+        localStorage.setItem('user', JSON.stringify(providerData[0]));
+        setUserLoginData(JSON.parse(localStorage.getItem('user')));
+        setAuthContainer(false);
+
+        localStorage.setItem(
+          'userEmailId',
+          JSON.stringify(providerData[0].email)
+        );
+        navigate('/');
+        clearInputField();
+      })
+      .catch((err) => {
+        console.log('Err', err.message);
+      });
   };
 
-  function submitHandler(e) {
-    e.preventDefault();
-    const userData = {
-      uid: Date.now(),
-      displayName: users.name,
-      email: users.email,
-      photoURL: img,
-      isLogout: true,
-    };
-
-    localStorage.setItem('user', JSON.stringify(userData));
-    setUserLoginData(JSON.parse(localStorage.getItem('user')));
-    setAuthContainer(false);
-    clearInputField();
-    goBack();
+  function clearInputField() {
+    setNewEmail('');
+    setPassword('');
   }
+
   return (
     <div className='contact' id='contact'>
       <div className='title-container'>
         <h2 className='title-name'>Login</h2>
-        <span className='title-subtitle'>Create your Food Credentials</span>
+        <span className='title-subtitle'>Open your Food Delivery App</span>
       </div>
 
       <form className='contact-form' onSubmit={submitHandler}>
         <input
-          type='text'
-          name='name'
-          placeholder='Enter your Name'
-          className='contact-form-name'
-          required
-          value={name}
-          onChange={(event) => handleOnchange(event)}
-        />
-        <input
           type='email'
           name='email'
-          placeholder='Enter a valid email address'
+          placeholder='Enter a email address...'
           className='contact-form-email'
+          value={newEmail}
+          onChange={(event) => setNewEmail(event.target.value)}
           required
-          value={email}
-          onChange={(event) => handleOnchange(event)}
+        />
+        <input
+          type='password'
+          name='name'
+          placeholder='Enter your password...'
+          className='contact-form-name'
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+          required
         />
         <div className='btn-container'>
           <button type='submit' className='btn connect'>
@@ -78,6 +77,28 @@ const LoginCredentials = () => {
               <AiOutlineSend />
             </span>
           </button>
+          <button
+            type='submit'
+            className='btn trail'
+            onClick={() => setIsTrailBtn(!isTrailBtn)}
+          >
+            Trial Use
+          </button>
+          {isTrailBtn && (
+            <div className='trail-email'>
+              <div>
+                <h4>Email :</h4>
+                <p>rajblog@gamil.com</p>
+              </div>
+              <div>
+                <h4>Password :</h4>
+                <p>Rajblog123#</p>
+              </div>
+            </div>
+          )}
+        </div>
+        <div className='newUser'>
+          New to FoodApp ? <Link to='/signUp'>Click here to Register</Link>
         </div>
       </form>
     </div>

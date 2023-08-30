@@ -3,7 +3,7 @@ import { MobileHeader, ComputerHeader } from '.';
 
 const HeaderContainer = () => {
   const [width, setWidth] = React.useState(window.innerWidth);
-  const breakpoint = 768;
+  const breakpoint = 868;
 
   React.useEffect(() => {
     const handleViewSize = () => setWidth(window.innerWidth);

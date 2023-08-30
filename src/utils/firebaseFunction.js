@@ -21,4 +21,16 @@ const getData = async () => {
   return getDataRef.docs.map((doc) => doc.data());
 };
 
-export { setData, getData };
+const setProfileData = async (data) => {
+  const profileRef = doc(firestore, 'usersProfile', `${Date.now()}`);
+  await setDoc(profileRef, data, { merge: true });
+};
+
+const profileCollectionRef = collection(firestore, 'usersProfile');
+
+const getProfileData = async () => {
+  const data = await getDocs(profileCollectionRef);
+  return data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+};
+
+export { setData, getData, setProfileData, getProfileData };
