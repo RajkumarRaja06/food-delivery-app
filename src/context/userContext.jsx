@@ -142,9 +142,12 @@ const UserProvider = ({ children }) => {
 
   useEffect(() => {
     setUserLoginData(userInfo);
-    userInfo ? setIsUserLogIn(true) : setIsUserLogIn(false);
     fetchProfileData();
   }, []);
+
+  useEffect(() => {
+    userInfo ? setIsUserLogIn(true) : setIsUserLogIn(false);
+  }, [userLoginData]);
 
   return (
     <UserContext.Provider
