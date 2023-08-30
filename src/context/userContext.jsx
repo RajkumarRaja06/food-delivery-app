@@ -180,7 +180,6 @@ const UserProvider = ({ children }) => {
         getImageUrl,
         emptyValue,
         fetchProfileData,
-        profilePicture,
       }}
     >
       {children}
