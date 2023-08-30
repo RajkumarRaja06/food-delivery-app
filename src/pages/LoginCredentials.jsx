@@ -88,11 +88,11 @@ const LoginCredentials = () => {
             <div className='trail-email'>
               <div>
                 <h4>Email :</h4>
-                <p>rajblog@gamil.com</p>
+                <p>rajfoodapp@gamil.com</p>
               </div>
               <div>
                 <h4>Password :</h4>
-                <p>Rajblog123#</p>
+                <p>Rajapp123#</p>
               </div>
             </div>
           )}
