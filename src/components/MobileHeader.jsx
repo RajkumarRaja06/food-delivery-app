@@ -31,6 +31,11 @@ const MobileHeader = () => {
     toast.warning('Please LogIn!');
   };
 
+  const loginEventHandler = () => {
+    login();
+    setAuthContainer(!authContainer);
+  };
+
   return (
     <nav className='mobileHeader'>
       <div
@@ -60,8 +65,8 @@ const MobileHeader = () => {
           />
           {authContainer && (
             <div className='computerHeader-authContainer'>
-              <p onClick={login}>Google</p>
-              <p>
+              <p onClick={loginEventHandler}>Google</p>
+              <p onClick={() => setAuthContainer(!authContainer)}>
                 <Link to='loginCredentials'>Login Credentials</Link>
               </p>
             </div>
@@ -95,7 +100,7 @@ const MobileHeader = () => {
                   <a href='#about'>Menu</a>
                 </li>
                 <li>
-                  <a href='#services'>Contents Us</a>
+                  <a href='#services'>Contact Us</a>
                 </li>
               </ul>
               <div className='mobileHeader-profile'>

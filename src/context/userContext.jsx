@@ -7,7 +7,7 @@ import {
 } from 'react';
 
 import { auth, provider } from '../utils/firebase';
-import { signInWithPopup } from 'firebase/auth';
+import { signInWithPopup, onAuthStateChanged, signOut } from 'firebase/auth';
 import { storage } from '../utils/firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { getProfileData } from '../utils/firebaseFunction';
@@ -23,6 +23,7 @@ const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(profileReducer, initialState);
+  const [userProviderData, setUserProviderData] = useState('');
 
   const [userLoginData, setUserLoginData] = useState(null);
   const [isMenu, setIsMenu] = useState(false);
@@ -39,11 +40,6 @@ const UserProvider = ({ children }) => {
   const [gender, setGender] = useState('');
   const [image, setImage] = useState('');
 
-  const userInfo =
-    localStorage.getItem('user') === 'undefined'
-      ? localStorage.clear()
-      : JSON.parse(localStorage.getItem('user'));
-
   const fetchProfileData = async () => {
     await getProfileData().then((data) => {
       dispatch({ type: 'GET_PROFILE_DATA', profileData: data });
@@ -54,26 +50,21 @@ const UserProvider = ({ children }) => {
     if (!userLoginData) {
       setAuthContainer(!authContainer);
       const { user } = await signInWithPopup(auth, provider);
-      const { providerData } = user;
-      localStorage.setItem('user', JSON.stringify(providerData[0]));
-      setUserLoginData(JSON.parse(localStorage.getItem('user')));
-      setIsUserLogIn(true);
+      setUserProviderData(user);
     } else {
       setIsMenu(!isMenu);
     }
   };
 
   const logout = () => {
-    localStorage.clear();
+    signOut(auth);
     setUserLoginData('');
     setIsUserLogIn(false);
   };
 
   const getUserProfile = () => {
-    setEmail(userInfo.email);
-    const filterUser = state.profileData.find(
-      (item) => item.email === userInfo.email
-    );
+    const filterUser = state.profileData.find((item) => item.email === email);
+
     if (filterUser) {
       if (filterUser === 'undefined') {
         setIsEditing(false);
@@ -141,13 +132,18 @@ const UserProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    setUserLoginData(userInfo);
     fetchProfileData();
   }, []);
 
   useEffect(() => {
-    userInfo ? setIsUserLogIn(true) : setIsUserLogIn(false);
-  }, [userLoginData]);
+    onAuthStateChanged(auth, (userProviderData) => {
+      if (userProviderData) {
+        setUserLoginData(userProviderData.providerData[0]);
+        setEmail(userProviderData.providerData[0].email);
+        setIsUserLogIn(true);
+      }
+    });
+  }, [state.profileData]);
 
   return (
     <UserContext.Provider

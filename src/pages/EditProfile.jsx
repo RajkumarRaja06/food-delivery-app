@@ -31,7 +31,7 @@ const EditProfile = () => {
 
   useEffect(() => {
     getUserProfile();
-  }, [profileData]);
+  }, []);
 
   const navigate = useNavigate();
 
@@ -71,7 +71,7 @@ const EditProfile = () => {
           fetchProfileData();
           emptyValue();
           navigate('/');
-          toast.success('Successfully Update Profile');
+          toast.success('Profile Updated Successfully');
         }
       } else {
         toast.warning('Enter a valid number!');

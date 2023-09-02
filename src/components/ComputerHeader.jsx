@@ -31,6 +31,11 @@ const ComputerHeader = () => {
     toast.warning('Please LogIn!');
   };
 
+  const loginEventHandler = () => {
+    login();
+    setAuthContainer(!authContainer);
+  };
+
   return (
     <nav className='computerHeader'>
       <Link className='computerHeader-logo' to='/'>
@@ -51,7 +56,7 @@ const ComputerHeader = () => {
             <a href='#about'>Menu</a>
           </li>
           <li>
-            <a href='#services'>Contents Us</a>
+            <a href='#services'>Contact Us</a>
           </li>
         </ul>
         <motion.div
@@ -76,8 +81,8 @@ const ComputerHeader = () => {
           />
           {authContainer && (
             <div className='computerHeader-authContainer'>
-              <p onClick={login}>Google</p>
-              <p>
+              <p onClick={loginEventHandler}>Google</p>
+              <p onClick={() => setAuthContainer(!authContainer)}>
                 <Link to='loginCredentials'>Login Credentials</Link>
               </p>
             </div>

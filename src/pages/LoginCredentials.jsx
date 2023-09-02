@@ -21,16 +21,9 @@ const LoginCredentials = () => {
       .then((userCredential) => {
         const user = userCredential.user;
 
-        const { providerData } = user;
-
-        localStorage.setItem('user', JSON.stringify(providerData[0]));
-        setUserLoginData(JSON.parse(localStorage.getItem('user')));
+        setUserLoginData(user);
         setAuthContainer(false);
 
-        localStorage.setItem(
-          'userEmailId',
-          JSON.stringify(providerData[0].email)
-        );
         navigate('/');
         clearInputField();
       })
