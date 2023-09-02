@@ -23,12 +23,11 @@ const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(profileReducer, initialState);
-  const [userProviderData, setUserProviderData] = useState('');
 
   const [userLoginData, setUserLoginData] = useState(null);
   const [isMenu, setIsMenu] = useState(false);
   const [authContainer, setAuthContainer] = useState(false);
-  const [isUserLogIn, setIsUserLogIn] = useState(userLoginData);
+  const [isUserLogIn, setIsUserLogIn] = useState('');
 
   const [isEditing, setIsEditing] = useState(false);
 
@@ -50,7 +49,6 @@ const UserProvider = ({ children }) => {
     if (!userLoginData) {
       setAuthContainer(!authContainer);
       const { user } = await signInWithPopup(auth, provider);
-      setUserProviderData(user);
     } else {
       setIsMenu(!isMenu);
     }
@@ -136,13 +134,16 @@ const UserProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    onAuthStateChanged(auth, (userProviderData) => {
-      if (userProviderData) {
-        setUserLoginData(userProviderData.providerData[0]);
-        setEmail(userProviderData.providerData[0].email);
+    let subscriber = onAuthStateChanged(auth, (user) => {
+      // console.log(auth.currentUser); //returns null now
+      if (user) {
+        setUserLoginData(user.providerData[0]);
+        setEmail(user.providerData[0].email);
         setIsUserLogIn(true);
       }
     });
+
+    return subscriber;
   }, [state.profileData]);
 
   return (

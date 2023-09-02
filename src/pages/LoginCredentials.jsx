@@ -9,7 +9,7 @@ import { auth } from '../utils/firebase';
 
 const LoginCredentials = () => {
   const [isTrailBtn, setIsTrailBtn] = useState(false);
-  const { setUserLoginData, setAuthContainer } = UserConsumer();
+  const { setAuthContainer } = UserConsumer();
   const [newEmail, setNewEmail] = useState();
   const [password, setPassword] = useState();
 
@@ -21,7 +21,6 @@ const LoginCredentials = () => {
       .then((userCredential) => {
         const user = userCredential.user;
 
-        setUserLoginData(user);
         setAuthContainer(false);
 
         navigate('/');
