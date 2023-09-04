@@ -27,6 +27,9 @@ const LoginCredentials = () => {
         clearInputField();
       })
       .catch((err) => {
+        if (err.code === 'auth/wrong-password') {
+          alert('Password is wrong');
+        }
         console.log('Err', err.message);
       });
   };
@@ -74,7 +77,7 @@ const LoginCredentials = () => {
             className='btn trail'
             onClick={() => setIsTrailBtn(!isTrailBtn)}
           >
-            Trial Use
+            Test Credentials
           </button>
           {isTrailBtn && (
             <div className='trail-email'>
